@@ -14,7 +14,7 @@ x = int(input("Введите какое число ищем (от 1 до N): ")
 a = [randint(1, n) for _ in range(n)]
 print(a)
 count = nearby = 0
-diff = 11
+diff = n
 for i in range(n):
     if a[i] == x:
         count += 1
