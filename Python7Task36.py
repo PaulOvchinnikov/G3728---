@@ -29,3 +29,6 @@ print_operation_table(lambda x, y: x + y, x, y)
 
 print(f"Таблица вычитания", x, "на", y)
 print_operation_table(lambda x, y: x - y, x, y)
+
+print(f"Таблица возведение в степень", x, "на", y)
+print_operation_table(lambda x, y: x ** y, x, y)
