@@ -1,0 +1,69 @@
+sns.scatterplot(data = df, x = 'households', y = 'population');
+
+sns.relplot(data = df, kind='line', x = 'longitude', y = 'median_house_value')
+
+sns.histplot(data = df, x='housing_median_age');
+
+sns.displot(data=df, x='median_house_value', hue='housing_median_age');
+
+Задача 65
+Написать *EDA* для датасета про пингвинов
+
+Необходимо:
+
+- Использовать 2-3 точечных графика
+- Применить доп измерение в точечных графиках, используя аргументы *hue, size, stile*
+- Использовать *PairGrid* с типом графика на ваш выбор
+- Использовать 2-3 гистограммы
+
+df = sns.load_dataset('penguins')
+df.head()
+
+sns.scatterplot(data = penguins, x = "body_mass_g", y = "flipper_length_mm", hue="sex", style="sex", size="sex")
+
+sns.scatterplot(data = df, x='body_mass_g', y='flipper_length_mm', hue='sex', size=5);
+
+sns.scatterplot(data = df, x='bill_length_mm', y='bill_depth_mm', hue='sex', size=5);
+
+sns.scatterplot(data = df, x='body_mass_g', y='flipper_length_mm', hue='sex', size=6);
+
+sns.scatterplot(data = df, x='bill_depth_mm', y='bill_length_mm', hue='body_mass_g', size=4);
+
+lst = ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'sex']
+g = sns.PairGrid(df[lst])
+g.map(sns.scatterplot)
+
+sns.histplot(data=df, x='bill_depth_mm');
+
+sns.histplot(data=df, x='bill_length_mm');
+
+sns.histplot(data=df, x='flipper_length_mm');
+
+
+а в презентации еще  "Изобразить Heatmap"
+
+import numpy
+corr_matrix = df.corr()
+sns.heatmap(corr_matrix, linewidths = 0.5, cmap='coolwarm', annot=True);
+
+Задача №67. Решение в группах
+Создать новый столбец в таблице с пингвинами, который будет отвечать  за показатель длины клюва пингвина.
+high - длинный(от 42)
+middle - средний(от 35 до 42)
+low - маленький(до 35)
+
+df.loc[df['bill_length_mm'] >= 42, 'height_group'] = 'high'
+df.loc[(df['bill_length_mm'] >= 35) & (df['bill_length_mm'] < 42), 'height_group'] = 'middle'
+df.loc[df['bill_length_mm'] < 35, 'height_group'] = 'low'
+df['height_group'].value_counts()
+
+Задача 69
+sns.displot(df, x='flipper_length_mm', hue='height_group')
+
+Круговая диаграмма
+x = df['height_group'].value_counts()
+import matplotlib.pyplot as plt
+plt.pie(x.values, labels=x.index, autopct='%.1f%%')
+
+Эдуард Воронин 21:36
+https://t.me/Edik344f
